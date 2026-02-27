@@ -1,0 +1,24 @@
+name: Build My C App
+
+on:
+  push:
+    branches: [ "main" ]  # যখনই তুই মেইন ব্রাঞ্চে কোড পুশ করবি
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Compile C App
+      run: |
+        gcc app.c -o my_hello_app
+        
+    - name: Upload Binary
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-c-app-binary
+        path: my_hello_app
+        
